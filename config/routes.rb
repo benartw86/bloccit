@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   get 'welcome/about'
+  
+  get 'welcome/contact'
 
   root 'welcome#index'  #allows us to desclare a default page the app laods when user navigates to home page URL, root takes a hash as an argument
   
