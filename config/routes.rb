@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
+  get 'welcome/index'
+
+  get 'welcome/about'
+
+  root 'welcome#index'  #allows us to desclare a default page the app laods when user navigates to home page URL, root takes a hash as an argument
+  
+end
+
+
+# The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
@@ -53,4 +62,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
