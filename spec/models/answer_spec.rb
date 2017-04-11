@@ -8,6 +8,9 @@ RSpec.describe Answer, type: :model do
   describe "attributes" do
     it "has a body attribute" do
       expect(question).to have_attributes(body: "New Question Body")
+      
+    it "should respond to body" do
+      expect(answer).to respond_to(:body)  #want the body text to answer the question
     end
   end
 end
