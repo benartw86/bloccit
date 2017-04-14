@@ -5,7 +5,7 @@ require 'random_data'
 
   Post.create!(
     
-    title: RandomData.random_sentence,      #RandomData will create random stings for text and body
+    title: RandomData.random_sentence,      #RandomData will create random strings for text and body
     body: RandomData.random_paragraph
 )
 
@@ -24,6 +24,15 @@ posts = Post.all
 )
 
 end
+
+puts "#{Post.count}"
+Post.find_or_create_by!(title: "Apples", body: "They are sweet")
+puts "#{Post.count}"
+
+puts "#{Comment.count}"
+Comment.find_or_create_by!(body: "Apples are dumb", post_id: 208)
+puts "#{Comment.count}"
+
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
