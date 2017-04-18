@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-
-  get 'welcome/about'
-
+ 
+ resources :posts #we call the resources method and pass it a Symbol. This instructs Rails to create post routes for creating, updating, viewing, and deleting instances of Post. 
+ 
+ get 'about' => 'welcome#about'  
+ 
   root 'welcome#index'  #allows us to desclare a default page the app laods when user navigates to home page URL, root takes a hash as an argument
   
 end
