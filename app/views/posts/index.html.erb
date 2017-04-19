@@ -3,14 +3,14 @@
 <% @posts.each do |post| %>
    
    <div class="media">
-      <div class="media-body">
-         <div class="media-heading">
-            <h4><p><%= link_to post.title, post %></p> </h4>
-         </div>
-      </div>
-   </div>
+       <div class="media-body">
+          <div class="media-heading">
+             <h4><p><%= link_to post.title, post %></p></h4>
+          </div>
+       </div>
+    </div>
     
- <% end %>
+<% end %>
 
 
 <!-- we iterate over each post in @posts. For each post we create a link with  post.title as the text that links to /posts/id, with the id from the post.id 
