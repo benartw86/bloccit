@@ -15,6 +15,19 @@
        <li><%= link_to "About", about_path %></li>
     </ul>  <!-- will render the following in html: <a href="/welcome/index">Home</a> -->
 
+    <% if flash[:notice] %> <!-- Every view may have a flash so we make this universal by putting it in this spefic file, available to the entire app -->
+      <div class="alert- alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:alert] %>
+       <div class="alert alert-warning">
+         <button type="button" class="close" data-dismiss="alert">&times;</button>
+         <%= flash[:alert] %>
+       </div>
+    <% end %>
+
+
     <%= yield %>
   </div>
   

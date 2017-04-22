@@ -4,9 +4,30 @@ class PostsController < ApplicationController
   end
 
   def show
+    
+    @post = Post.find(params[:id]) # we find the post that corresponds to the id in the params that was passed to  show and assign it to @post. Unlike in the index method, in the show method, we populate an instance variable with a single post, rather than a collection of posts
   end
 
   def new
+    @post = Post.new  #we create an instance variable, then assign it an empty post returned by Post.new (not saved)  
+  end
+  
+  def create    #create is a POST action that works behind the scenes to collect the data submitted by users, does not have a corresponding view
+
+    @post = Post.new
+    @post.title = params[:post][:title]
+    @post.body = params[:post][:body]
+    
+  
+    if @post.save
+    
+      flash[:notice] = "Post was saved."
+      redirect_to @post   #redirecting to @post will direct the user to the posts show view, the flash action provides a way to pass temp values between actions
+    else
+    
+      flash.now[:alert] = "There was an error saving the post. Please try again."
+      render :new     #render new view if Post save is unsuccessful
+    end
   end
 
   def edit
