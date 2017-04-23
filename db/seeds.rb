@@ -1,6 +1,6 @@
 require 'random_data'
 
-50.times do
+5.times do
 # create posts
 
   Post.create!(
@@ -15,7 +15,7 @@ posts = Post.all
 
 # create comments
 
-100.times do
+10.times do
 
   Comment.create!(    #using the "!" (bang) instructs method to raise an error if there is a problem
       
@@ -25,7 +25,22 @@ posts = Post.all
 
 end
 
+10.times do
+  
+  Advertisement.create!(
+  
+  title: RandomData.random_sentence,
+  body: RandomData.random_paragraph,
+  price: RandomData.random_number
+    
+)
+
+end
+
+advertisements = Advertisement.all
+
 puts "Seed finished"
+puts "#{Advertisement.count} adverts created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 # This file should contain all the record creation needed to seed the database with its default values.
