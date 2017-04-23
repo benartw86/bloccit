@@ -25,4 +25,8 @@ module RandomData             #RandomData is a module because its a standalone l
     letters.shuffle!           #call shuffle on letters in place with "!", otherwise it would return an array
     letters[0,rand(3..8)].join #We  join the zeroth through nth item in letters. The nth item is the result of  rand(3..8) which returns a random number greater than or equal to three and less than eight.
   end
+  
+  def self.random_number
+    rand 10
+  end
 end
