@@ -1,0 +1,14 @@
+<h1>Questions!</h1> 
+
+<% @questions.each do |q| %>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to q.title, q %>
+      </h4>
+    </div>      
+  </div>
+<% end %>
+
+<%= link_to "Ask a question!", new_question_path(@question), class: 'btn btn-success' %>
+

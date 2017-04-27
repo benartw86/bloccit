@@ -37,10 +37,22 @@ end
 
 end
 
+10.times do
+  
+  Question.create!(
+  
+  title: RandomData.random_sentence,
+  body: RandomData.random_paragraph,
+    
+)
+
+end
+
 advertisements = Advertisement.all
 
 puts "Seed finished"
 puts "#{Advertisement.count} adverts created"
+puts "#{Question.count} questions created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 # This file should contain all the record creation needed to seed the database with its default values.
