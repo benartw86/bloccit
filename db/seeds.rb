@@ -43,12 +43,12 @@ end
   
   title: RandomData.random_sentence,
   body: RandomData.random_paragraph,
+  resolved: false
     
 )
 
 end
 
-advertisements = Advertisement.all
 
 puts "Seed finished"
 puts "#{Advertisement.count} adverts created"

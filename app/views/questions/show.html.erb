@@ -5,6 +5,7 @@
  <div class="row">
    <div class="col-md-8">
       <p><%= @question.body %></p>
+      <p><%= @question.resolved %></p>
       
       Mark as resolved: <%= check_box(@question, @question.resolved, options = {}, checked_value = "1", unchecked_value = "0") =%> 
      
