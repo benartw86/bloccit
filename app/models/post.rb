@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+    
+    belongs_to :topic
     has_many :comments, dependent: :destroy          #has_many method allows a post instance to have many comments related to it, allows allows retrieval of comments from a post
 end
 

@@ -1,7 +1,4 @@
 class PostsController < ApplicationController
-  def index
-    @posts = Post.all  #we declare an instance variable @posts and assign it a collection of Post objects using the all method provided by ActiveRecord. all returns a collection of  Post objects.
-  end
 
   def show
     
@@ -9,6 +6,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @topic = Topic.find(params[:topic_id])
     @post = Post.new  #we create an instance variable, then assign it an empty post returned by Post.new (not saved)  
   end
   
@@ -17,12 +15,14 @@ class PostsController < ApplicationController
     @post = Post.new
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
+    @topic = Topic.find(params[:topic_id])
     
+    @post.topic = @topic
   
     if @post.save
     
       flash[:notice] = "Post was saved."
-      redirect_to @post   #redirecting to @post will direct the user to the posts show view, the flash action provides a way to pass temp values between actions
+      redirect_to [@topic, @post]   #redirecting to @post will direct the user to the posts show view, the flash action provides a way to pass temp values between actions
     else
     
       flash.now[:alert] = "There was an error saving the post. Please try again."
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
     
     if @post.save
        flash[:notice] = "Post was updated."
-       redirect_to @post
+       redirect_to [@post.topic, @post]
      else
        flash.now[:alert] = "There was an error saving the post. Please try again."
        render :edit
@@ -53,7 +53,7 @@ class PostsController < ApplicationController
     
     if @post.destroy
        flash[:notice] = "\"#{@post.title}\" was deleted successfully."
-       redirect_to posts_path
+       redirect_to @post.topic
      else
        flash.now[:alert] = "There was an error deleting the post."
        render :show

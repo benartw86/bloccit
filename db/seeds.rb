@@ -1,10 +1,20 @@
 require 'random_data'
 
+#create topics
+
+15.times do
+   Topic.create!(
+     name:         RandomData.random_sentence,
+     description:  RandomData.random_paragraph
+   )
+ end
+ topics = Topic.all
+
 5.times do
 # create posts
 
   Post.create!(
-    
+    topic: topics.sample,
     title: RandomData.random_sentence,      #RandomData will create random stings for text and body
     body: RandomData.random_paragraph
 )
@@ -25,22 +35,8 @@ posts = Post.all
 
 end
 
-10.times do
-  
-  Advertisement.create!(
-  
-  title: RandomData.random_sentence,
-  body: RandomData.random_paragraph,
-  price: RandomData.random_number
-    
-)
-
-end
-
-advertisements = Advertisement.all
-
 puts "Seed finished"
-puts "#{Advertisement.count} adverts created"
+puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 # This file should contain all the record creation needed to seed the database with its default values.

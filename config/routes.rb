@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
  
- resources :posts #we call the resources method and pass it a Symbol. This instructs Rails to create post routes for creating, updating, viewing, and deleting instances of Post. 
+  # we pass resources :posts to the resources :topics block. This nests the post routes under the topic routes.
+  
+  resources :topics do
+  
+  resources :posts, except: [:index]
+ end
+
  
  get 'about' => 'welcome#about'  
  
@@ -8,6 +14,8 @@ Rails.application.routes.draw do
   
 end
 
+# resources :posts we call the resources method and pass it a Symbol. 
+#This instructs Rails to create post routes for creating, updating, viewing, and deleting instances of Post. 
 
 # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
