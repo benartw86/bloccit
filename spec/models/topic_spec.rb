@@ -7,6 +7,7 @@ require 'rails_helper'
    let(:topic) { Topic.create!(name: name, description: description) }
    
    it { is_expected.to have_many(:posts) }
+   it { is_expected.to have_many(:sponsored_posts) }
 
  # we confirm that a topic responds to the appropriate attributes
    describe "attributes" do

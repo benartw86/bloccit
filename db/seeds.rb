@@ -9,6 +9,15 @@ require 'random_data'
    )
  end
  topics = Topic.all
+ 
+15.times do 
+  SponsoredPost.create!(
+    topic: topics.sample,
+    title: RandomData.random_sentence,
+    body:  RandomData.random_paragraph,
+    price: rand(40..100)
+    )
+  end
 
 5.times do
 # create posts
@@ -39,6 +48,7 @@ puts "Seed finished"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{SponsoredPost.count} sponsored posts created"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
