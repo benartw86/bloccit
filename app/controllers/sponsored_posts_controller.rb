@@ -16,7 +16,7 @@ class SponsoredPostsController < ApplicationController
   def create
     @sponsored_post = SponsoredPost.new
     @sponsored_post.title = params[:sponsored_post][:title]
-    @sponsored_post.body = params [:sponsored_post][:body]
+    @sponsored_post.body = params[:sponsored_post][:body]
     @sponsored_post.price = params[:sponsored_post][:price]
     @topic = Topic.find(params[:topic_id])
     
@@ -30,7 +30,7 @@ class SponsoredPostsController < ApplicationController
      else
        flash.now[:alert] = "There was an error saving the post. Please try again."
        render :new
-     end
+    end
   end
 
   def edit
@@ -50,6 +50,18 @@ class SponsoredPostsController < ApplicationController
       flash.now[:alert] = "There was an error, try again"
       render :edit
     end
+  end
+  
+  def destroy
+    @sponsored_post = SponsoredPost.find(params[:id])
+    
+    if @sponsored_post.destroy
+       flash[:notice] = "\"#{@sponsored_post.title}\" was deleted successfully."
+       redirect_to @sponsored_post.topic
+     else
+       flash.now[:alert] = "There was an error deleting the post."
+       render :show
+     end
   end
 end
 

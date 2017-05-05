@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     @post.body = params[:post][:body]
     @topic = Topic.find(params[:topic_id])
     
-    @post.topic = @topic
+    @post.topic = @topic 
   
     if @post.save
     
