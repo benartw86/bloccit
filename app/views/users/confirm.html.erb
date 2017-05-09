@@ -6,9 +6,12 @@
 
 <h3>Name: <%= @user.name %></h3>
 
- 
-  <div class="row col-md-4">
-    <%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success' %>
-    <%= link_to "No", new_user_path, class: 'btn btn-primary' %>
-  </div>
+ <div class="row">
+   <div class="col-md-4", style="width: auto;">
+     <%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success' %>
+   </div>
+   <div class="col-md-4", style="width: auto;">
+     <%= link_to "No", new_user_path, class: 'btn btn-primary' %> 
+   </div>
+ </div>
 
