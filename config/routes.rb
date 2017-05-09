@@ -9,10 +9,12 @@ Rails.application.routes.draw do
 
   # we create routes for new and create actions. The only hash key will prevent Rails from creating unnecessary routes.
   resources :users, only: [:new, :create]
- 
+  
+  post 'users/confirm' => 'users#confirm'
+  
  get 'about' => 'welcome#about'  
  
-  root 'welcome#index'  #allows us to desclare a default page the app laods when user navigates to home page URL, root takes a hash as an argument
+  root 'welcome#index'  #allows us to declare a default page the app laods when user navigates to home page URL, root takes a hash as an argument
   
 end
 
