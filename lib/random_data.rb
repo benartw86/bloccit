@@ -1,5 +1,16 @@
 
 module RandomData             #RandomData is a module because its a standalone library, no dependencies/inheritance
+                              
+  def self.random_name
+    first_name = random_word.capitalize
+    last_name = random_word.capitalize
+    "#{first_name} #{last_name}"
+  end
+  
+  def self.random_email
+    "#{random_word}@#{random_word}.#{random_word}"
+  end
+                              
                               #the use of a module helps keep common functions organized and reusable 
   def self.random_paragraph   
     sentences = []            #We set sentences to an array. We create four to six random sentences and append them to sentences to create paragraph

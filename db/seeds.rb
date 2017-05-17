@@ -1,5 +1,18 @@
 require 'random_data'
 
+# create users
+
+5.times do 
+  User.create!(
+  
+  name: RandomData.random_name,
+  email: RandomData.random_email,
+  password: RandomData.random_sentence
+  
+  )
+end
+users = User.all
+
 #create topics
 
 15.times do
@@ -10,10 +23,11 @@ require 'random_data'
  end
  topics = Topic.all
 
-5.times do
+50.times do
 # create posts
 
   Post.create!(
+    user: users.sample,
     topic: topics.sample,
     title: RandomData.random_sentence,      #RandomData will create random stings for text and body
     body: RandomData.random_paragraph
@@ -35,7 +49,14 @@ posts = Post.all
 
 end
 
+user = User.first
+user.update_attributes!(
+  email: 'benartw86@yahoo.com',
+  password: 'helloworld'
+)
+
 puts "Seed finished"
+puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
