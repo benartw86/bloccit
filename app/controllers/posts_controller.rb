@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   
   before_action :require_sign_in, except: :show  #use a before_action filter to call require_sign_in before each of our controller actions, except show
 
+  before_action :authorize_user, except: [:show, :new, :create]
+
   def show
     
     @post = Post.find(params[:id]) # we find the post that corresponds to the id in the params that was passed to  show and assign it to @post. Unlike in the index method, in the show method, we populate an instance variable with a single post, rather than a collection of posts
@@ -62,5 +64,14 @@ class PostsController < ApplicationController
   
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+  
+  def authorize_user
+    post = Post.find(params[:id])
+    
+    unless current_user == post.user || current_user.admin?
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to [post.topic, post]
+    end
   end
 end
