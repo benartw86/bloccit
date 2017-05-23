@@ -39,11 +39,11 @@ posts = Post.all
 
 # create comments
 
-10.times do
+50.times do
 
   Comment.create!(    #using the "!" (bang) instructs method to raise an error if there is a problem
-      
-    post: posts.sample,                 #sample returns a random element from the array, in order to pick a random post for each comment
+    user: users.sample,
+    post: posts.sample,                #sample returns a random element from the array, in order to pick a random post for each comment
     body: RandomData.random_paragraph
 )
 
