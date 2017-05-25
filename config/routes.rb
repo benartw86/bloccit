@@ -8,9 +8,13 @@ Rails.application.routes.draw do
  end
  
   resources :posts, only: [] do
-    
     resources :comments, only: [:create, :destroy]
+    
+    post '/up-vote' => 'votes#up_vote', as: :up_vote
+    post '/down-vote' => 'votes#down_vote', as: :down_vote   #these new lines create POST route, the as: key value pairs stipulate the method names whch will be associated with the route
   end
+  
+  
 
   # we create routes for new and create actions. The only hash key will prevent Rails from creating unnecessary routes.
   resources :users, only: [:new, :create]

@@ -1,0 +1,7 @@
+<% if current_user %>
+ <div class="vote-arrows pull-left"> 
+   <div><%= link_to " ", post_up_vote_path(post), class: 'glyphicon glyphicon-chevron-up', method: :post %></div>  <!-- use method: :post for POST method rather than default GET from link_to -->
+   <div><strong><%= post.points %></strong></div>
+   <div><%= link_to " ", post_down_vote_path(post), class: 'glyphicon glyphicon-chevron-down', method: :post %></div>
+ </div>
+<% end %> 
