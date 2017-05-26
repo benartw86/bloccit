@@ -13,6 +13,7 @@ RSpec.describe Post, type: :model do
    
    # #associate post with topic via topic.posts.create!, this is a chained method, creating a post for a given topic
   let(:post) { topic.posts.create!(title: title, body: body, user: user) }
+  let(:vote) { Vote.create!(value: 1, post: post, user: user) }
    
   it { is_expected.to have_many(:comments) }
   it { is_expected.to have_many(:votes) }
@@ -77,6 +78,13 @@ RSpec.describe Post, type: :model do
         old_rank = post.rank
         post.votes.create!(value: -1)
         expect(post.rank).to eq (old_rank - 1)
+      end
+    end
+    
+    describe "#create_vote" do
+      it "up votes a post on creation" do
+        post.votes.create!(value: 1)
+        expect(post.rank).to eq(1)
       end
     end
   end
