@@ -4,7 +4,7 @@
     belongs_to :user
     has_many :comments, dependent: :destroy          #has_many method allows a post instance to have many comments related to it, allows allows retrieval of comments from a post
     has_many :votes, dependent: :destroy            #add votes association to posts, allowing us to call post.votes
-    
+    has_many :favorites, dependent: :destroy
     
     default_scope { order('rank DESC') }      # this method will order all posts by created_at date in descending order (DESC)
 

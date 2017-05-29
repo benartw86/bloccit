@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
     has_many :posts, dependent: :destroy
     has_many :comments, dependent: :destroy
     has_many :votes, dependent: :destroy
+    has_many :favorites, dependent: :destroy
     
       #we register an inline callback directly after the before_save callback
     before_save { self.email = email.downcase if email.present? }
@@ -22,4 +23,11 @@ class User < ActiveRecord::Base
     has_secure_password
     
     enum role: [:member, :admin]
+    
+    #this method takes a post object and uses where to retrieve the user's favorites with a post_id that matches post_id
+    #If the user has favorited a post it will return an array of one item, if not, empty array, calling first returns the favorite or nil(empty)
+    
+    def favorite_for(post)
+      favorites.where(post_id: post.id).first
+    end
 end
