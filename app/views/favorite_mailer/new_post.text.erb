@@ -1,0 +1,6 @@
+New favorite to "<%= @post.title %>"
+ <%= "=" * (@post.title.length + 12) %>
+ 
+ By: <%= @user %>
+ 
+ Visit online at: <%= topic_post_url(@post.topic, @post, anchor: "comment-#{@comment.id}") %>

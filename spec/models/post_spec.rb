@@ -29,41 +29,41 @@ RSpec.describe Post, type: :model do
   it { is_expected.to validate_length_of(:title).is_at_least(5) }
   it { is_expected.to validate_length_of(:body).is_at_least(20) }
 
-    describe "attributes" do
-      it "has a title and body and user attribute" do
-        expect(post).to have_attributes(title: title, body: body, user: user)
+  describe "attributes" do
+    it "has a title and body and user attribute" do
+      expect(post).to have_attributes(title: title, body: body, user: user)
       end
     end
    
-    describe "voting" do
+  describe "voting" do
     
-      before do
-        3.times { post.votes.create!(value: 1) }
-        2.times { post.votes.create!(value: -1) }
-        @up_votes = post.votes.where(value: 1).count
-        @down_votes = post.votes.where(value: -1).count
-      end
+    before do
+      3.times { post.votes.create!(value: 1) }
+      2.times { post.votes.create!(value: -1) }
+      @up_votes = post.votes.where(value: 1).count
+      @down_votes = post.votes.where(value: -1).count
+    end
      
-      describe "#up_votes" do
-        it "counts the number of votes with value = 1" do
-          expect( post.up_votes).to eq(@up_votes)
-        end
+    describe "#up_votes" do
+      it "counts the number of votes with value = 1" do
+        expect( post.up_votes).to eq(@up_votes)
       end
+    end
      
-      describe "#down_votes" do
-        it "counts the number of votes with value = -1" do
-          expect( post.down_votes ).to eq(@down_votes)
-        end
+    describe "#down_votes" do
+      it "counts the number of votes with value = -1" do
+        expect( post.down_votes ).to eq(@down_votes)
       end
+    end
     
-      describe "#points" do
-        it "returns the sum of all down and up votes" do
-          expect( post.points ).to eq(@up_votes - @down_votes)
-        end
+    describe "#points" do
+      it "returns the sum of all down and up votes" do
+        expect( post.points ).to eq(@up_votes - @down_votes)
       end
+    end
     
-      describe "#update_rank" do
-        it "calculates the correct rank" do
+    describe "#update_rank" do
+      it "calculates the correct rank" do
         post.update_rank
         expect(post.rank).to eq (post.points + (post.created_at - Time.new(1970,1,1)) / 1.day.seconds)
       end
@@ -81,9 +81,17 @@ RSpec.describe Post, type: :model do
       end
     end
   end
-end
+  
+    describe "after_create" do
+    
+      it "creates a favorite for a user who has created a post" do
+        expect(user.favorites.find_by_post_id(post.id)).not_to be_nil
+      end
+    end
+  end
 
- 
+ #favorite = user.favorites.create(post: post)
+  #expect(FavoriteMailer).to receive(:new_comment).with(post).and_return(double(deliver_now: true))
 
 
 #using let, create new instance of Post class, naming it post.  Let defines a method
