@@ -81,14 +81,7 @@ RSpec.describe Post, type: :model do
       end
     end
   end
-  
-    describe "after_create" do
-    
-      it "creates a favorite for a user who has created a post" do
-        expect(user.favorites.find_by_post_id(post.id)).not_to be_nil
-      end
-    end
-  end
+end
 
  #favorite = user.favorites.create(post: post)
   #expect(FavoriteMailer).to receive(:new_comment).with(post).and_return(double(deliver_now: true))
