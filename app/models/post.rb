@@ -7,6 +7,8 @@
     has_many :favorites, dependent: :destroy
     
     default_scope { order('rank DESC') }      # this method will order all posts by created_at date in descending order (DESC)
+    
+    scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
 
     validates :title, length: { minimum: 5 }, presence: true
     validates :body, length: { minimum: 20 }, presence: true

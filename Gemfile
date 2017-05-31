@@ -17,6 +17,7 @@
  group :development, :test do   #rspec added to development and test groups b/c we want its task available in both envts
    gem 'rspec-rails', '~> 3.0'
    gem 'shoulda'
+   gem 'factory_girl_rails', '~> 4.0'
  end
  
  # Use SCSS for stylesheets
