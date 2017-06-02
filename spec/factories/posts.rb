@@ -6,4 +6,4 @@ FactoryGirl.define do
     user
     rank 0.0
   end
-end
+end 

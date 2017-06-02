@@ -11,7 +11,7 @@
          </div>
        <% end %>
        <div class="media-body">
-         <h2 class="media-heading"><%= @user.name %></h2>
+         <h2 class="media-heading"><%= has_posts?(@user) %></h2>  <!--  -->
          <small>
            <%= pluralize(@user.posts.count, 'post') %>,
            <%= pluralize(@user.comments.count, 'comment') %>
@@ -22,8 +22,22 @@
  </div>
  
  
- <h2>Posts</h2>
+ <h2>Posts</h2>  
  <%= render @user.posts %>
  
  <h2>Comments</h2>
- <%= render @user.comments %>
+ <%= render @user.comments %>  
+ 
+ 
+ <h2>Favorites</h2>  
+ <!-- Add a list of posts the user has favorited, next to each favorited post have the avatar, 
+ number of votes and number of comments for each post-->
+<!-- How does one access the votes and comments (to count do votes.count/comments.count)-->
+ 
+ 
+<div class="inline-block"><%= render @user.favorites.map(&:post) %></div>
+
+ 
+ 
+ 
+ 

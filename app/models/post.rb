@@ -17,7 +17,7 @@
     
     
     def up_votes
- # #9
+ # #9 
       votes.where(value: 1).count
     end
  

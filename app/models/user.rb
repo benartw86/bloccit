@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     #this method takes a post object and uses where to retrieve the user's favorites with a post_id that matches post_id
     #If the user has favorited a post it will return an array of one item, if not, empty array, calling first returns the favorite or nil(empty)
     
+    def has_posts?
+      posts.count > 0 ? name : "#{name} has no posts"  
+    end
+    
     def favorite_for(post)
       favorites.where(post_id: post.id).first
     end
